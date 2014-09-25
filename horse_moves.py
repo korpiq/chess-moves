@@ -113,13 +113,14 @@ class HorseMoves:
         return next_moves.values(), reached
 
     def draw(self):
-        chessboard = [[(((y ^ x) & 1) and '##' or '__') for x in range(0,8)] for y in range(0,8)]
-        chessboard[self.finish_location.y][self.finish_location.x] = '<>'
+        chessboard = [[(((y ^ x) & 1) and '#' or '_') for x in range(0,8)] for y in range(0,8)]
+        chessboard[self.finish_location.y][self.finish_location.x] = 'X'
         for move_index in range(0, len(self.move_tree)):
             for move in self.move_tree[move_index]:
-                chessboard[move.y][move.x] = '%2d' % move_index
+                chessboard[move.y][move.x] = '%d' % move_index
+
+        print('  A B C D E F G H')
         print('\n'.join(['%d %s' % (y + 1, ' '.join([chessboard[y][x] for x in range(0,8)])) for y in range(0,8)]))
-        print('  A  B  C  D  E  F  G  H ')
 
 
 def report_solutions(start, finish, draw, verbose):
